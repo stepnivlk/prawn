@@ -20,6 +20,7 @@ module Prawn
                          "<i>|</i>|" \
                          "<u>|</u>|" \
                          "<strikethrough>|</strikethrough>|" \
+                         "<s>|</s>|" \
                          "<sub>|</sub>|" \
                          "<sup>|</sup>|" \
                          "<link[^>]*>|</link>|" \
@@ -136,7 +137,7 @@ module Prawn
               styles << :italic
             when "<u>"
               styles << :underline
-            when "<strikethrough>"
+            when "<strikethrough>" || "<s>"
               styles << :strikethrough
             when "<sub>"
               styles << :subscript
@@ -148,7 +149,7 @@ module Prawn
               styles.delete(:italic)
             when "</u>"
               styles.delete(:underline)
-            when "</strikethrough>"
+            when "</strikethrough>" || "</s>"
               styles.delete(:strikethrough)
             when "</sub>"
               styles.delete(:subscript)
